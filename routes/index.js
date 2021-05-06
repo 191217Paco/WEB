@@ -2,17 +2,29 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport')
 const PassportLocal = require('passport-local').Strategy;
-const userDAO = require('../models/user');
+const userDAO = require('../models/UserDAO');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 /* GET home page. */
 router.get('/', (req, res) => {
+  console.log('holiiii '+res.isAuthenticated)
+  if (res.isAuthenticated){
+    console.log()
+    res.logout();
+  }
   let message= req.flash('error');
   res.render('login',{title:'login', message});
 });
 
+
+router.get('/registro',((req, res) => {
+
+  res.render('register')
+}))
+
 /*pagina principal*/
+/*
 router.get('/main',(req,res)=>{
   //metodo utilizado para validar la session
   if (req.isAuthenticated()){
@@ -22,10 +34,10 @@ router.get('/main',(req,res)=>{
     res.render('login');
     console.log('Denegado');
   }
-});
+});*/
 /*Verificacion de acceso, desde el login*/
 router.post('/login', passport.authenticate('local',{
-  successRedirect:'/main',
+  successRedirect:'/home/main',
   failureRedirect:'/',
   failureFlash:'usuario o contraseña incorrecta'
 }));

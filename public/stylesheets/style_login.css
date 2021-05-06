@@ -53,3 +53,8 @@ header{
     left: 0;
     width: 100%;
 }
+.barra{
+    width: 30px;
+    height: auto;
+    background: #00B7FF;
+}

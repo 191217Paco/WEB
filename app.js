@@ -12,6 +12,9 @@ const passport = require('passport');
 let indexRouter = require('./routes/index');
 let usersRouter = require('./routes/users');
 let registerRouter = require('./routes/register');
+let homeRouter = require('./routes/home');
+let noteRouter = require('./routes/notes');
+
 //let loginRouter = require("./routes/login");
 
 
@@ -47,8 +50,10 @@ passport.deserializeUser(function(id, done) {
 */
 
 app.use('/', indexRouter);
-app.use('/r', registerRouter);
-app.use('/users', usersRouter);
+app.use('/register', registerRouter);
+app.use('/home', homeRouter);
+app.use('/note',noteRouter)
+//app.use('/users', usersRouter);
 
 
 // catch 404 and forward to error handler

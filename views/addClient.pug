@@ -1,0 +1,33 @@
+extends layout
+block content
+        nav.navbar.navbar-expand-lg.navbar-light.bg-light
+            a.boton5(href='/home/main') Home
+            button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation')
+                span.navbar-toggler-icon
+            #navbarNavDropdown.collapse.navbar-collapse
+                ul.navbar-nav
+                    li.nav-item(style='background-color: powderblue;' )
+                        a.nav-link(href='/home/addC') Agregar Cliente
+                    li.nav-item
+                        a.nav-link(href='/home/seeC') Ver Clientes
+
+        div.form1
+            div.form2
+                form(action='/home/addClient' METHOD='POST')
+                    div.form-group
+                        label.control-label Nombres
+                        input#name.form-control(type='text', name='name', placeholder='John Deer' required)
+                    div.form-group
+                        label.control-label Apellidos
+                        input#lastname.form-control(type='text', name='lastname',  placeholder='Sultanito' required)
+                    div.form-group
+                        label.control-label Email
+                        input#email.form-control(type='text', name='email',  placeholder='name@gmail.com' required)
+                    div.form-group
+                        label.control-label Numero telefonico
+                        input#username.form-control(type='text', name='phone',  placeholder='telefono' required)
+                    if(message && message.length > 0)
+                        p(class="alert alert-danger") #{message}
+                    div.form-group.p-2.bd-highlight
+                        button.btn.btn-primar(type="submit") Salvar
+

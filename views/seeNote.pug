@@ -1,0 +1,48 @@
+extends layout
+block content
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+        a.boton5(href='/home/main') Home
+        button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+        #navbarNavDropdown.collapse.navbar-collapse
+            ul.navbar-nav
+                li.nav-item
+                    a.nav-link(href='/home/addC') Agregar nota
+                li.nav-item(style='background-color: powderblue;' )
+                    a.nav-link(href='/home/viewNote') Ver notas
+
+
+    .d-flex.flex-wrap
+        each item in list
+            .card.cardL(style='width:300px; border-style: solid;')
+                .card-body
+                    .d-flex.flex-row.bd-highlight.mb-3
+                        p.card-test=  item.nota.id
+                        h4.card-title= item.cliente.name
+                    p.card-text= item.cliente.lastname
+                    p.card-text= item.nota.stat
+                    h3.card-text= item.carro.marca
+                    table.table.table-sm.table-dark.table-hover
+                        -let lis = item.servicios
+                        -console.log("holiiiiiiiiiiiiiiii"+item.servicios)
+                        thead
+                            tr
+                                th(scope='col') #
+                                th(scope='col') Descripcion
+                                th(scope='col') Precio
+                                // <th scope="col">Handle</th>
+                        tbody
+                            each ite  in lis
+                                tr
+                                    th(scope='row')
+                                    td=ite
+                                    td=ite
+
+
+                //.d-flex.flex-row.bd-highlight.mb-3
+                    .form-group.p-2.bd-highlight
+                        a.btn.btn-warning(href='/home/main') Edit
+                    .form-group.p-2.bd-highlight
+                        a.btn.btn-danger(href='/home/delC/' + item.id) Delete
+                    .form-group.p-2.bd-highlight
+                        // <a [routerLink]="'addEdit/',client" class="btn btn-info "  >Editar</a>

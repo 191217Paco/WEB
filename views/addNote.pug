@@ -1,0 +1,35 @@
+extends layout
+block content
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+        a.boton5(href='/home/main') Home
+        button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+        #navbarNavDropdown.collapse.navbar-collapse
+            ul.navbar-nav
+                li.nav-item(style='background-color: powderblue;' )
+                    a.nav-link(href='/note/addC') Agregar nota
+                li.nav-item
+                    a.nav-link(href='/note/viewNote') Ver notas
+    .form1(style='width: fit-content; height: fit-content;')
+        .form2(style='border-style: solid; border-width: 1px;')
+            div
+                .d-flex.flex-row.bd-highlight.mb-3
+                    div(style='padding: 1em 2em 1em 1em;')
+                        form(action='/note/addCar' method='POST')
+                            label.control-label Cliente
+                            select.browser-default.custom-select( name='selectC')
+                                each item in clients
+                                    option(value=item.id )= item.name+" "+item.lastname
+                            .form-group
+                                label.control-label Marca del Automovil
+                                input#Marca.form-control(type='text' name='marca' placeholder='example@ Chevrolet')
+                            .form-group
+                                label.control-label Modelo
+                                input#Modelo.form-control(type='text' name='model'  placeholder='2010')
+                            .form-group.p-2.bd-highlight
+                                button.btn.btn-primary(type='submit') Salvar
+
+
+            .form-group.p-2.bd-highlight
+                a.btn.btn-primary(href='/home/main') Salvar
+

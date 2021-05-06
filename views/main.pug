@@ -1,19 +1,14 @@
-doctype html
-html
-    head
-        title Panel Principal
-        meta(charset="UTF-8")
-        link(rel="stylesheet" href="/stylesheets/styleMain.css")
-    body
-        img(id="bg" src="/../images/ventanita.jpg" alt="font")
-        a(class='float' href='/logout') cerrar session
-        div(class="box")
-            div(class="linea")
-            div(class="linea")
-            div(class="linea")
-            div(class="linea")
-            div(class="linea")
-            div(class="linea")
-            div(class="linea")
-            div(class="linea")
-
+extends layout
+block content
+        nav.navbar.navbar-expand-lg.navbar-light.bg-light
+            a.boton5(href='/home/main') Home
+            button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation')
+                span.navbar-toggler-icon
+            #navbarNavDropdown.collapse.navbar-collapse
+                ul.navbar-nav
+                    li.nav-item
+                        a.nav-link(href='/home/addC') Agregar Cliente
+                    li.nav-item
+                        a.nav-link(href='/note/notes') Agregar Servicio
+                    li.nav-item(style='background-color: powderblue;')
+                        a.nav-link(href='#') Service Status

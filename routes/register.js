@@ -1,29 +1,31 @@
 var express = require('express');
 var router = express.Router();
-const userDAO = require('../models/user');
+const userDAO = require('../models/UserDAO');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-router.get('/r',((req, res) => {
+
+router.get('/registro',((req, res) => {
     res.render('register')
 }))
-router.post('/register',  (req,res)=>{
-    let username = req.body.user_name;
+router.post('/create_register',  (req,res)=>{
+    console.log("Bueno aca vamos")
+    let username = req.body.username;
     let obj = req.body;
     userDAO.finUser(username,(data)=>{
        if (!data){
            let user ={
-               user_name: obj.user_name,
-               last_name: obj.last_name,
-               m_last_name: obj.m_last_name,
+               name: obj.name,
+               lastname: obj.lastname,
+               username: obj.username,
                password:bcrypt.hashSync( obj.password, saltRounds),
                email: obj.email
            };
            userDAO.insertUser(user, (data)=>{
                if (data.affectedRows === 0){
                    req.flash('error', 'No se inserto correctamente, 0 lineas afectadas');
-                   res.redirect('/register');
-
+                   res.render('register');
                }else{
+                   req.flash('error', 'usuario registrado exitosamente');
                    res.redirect('/');
                }
            });

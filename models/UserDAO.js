@@ -2,8 +2,9 @@ const connect = require('../config/dbmysql');
 
 module.exports = {
     finUser: (username, callback) => {
-        let sql = 'SELECT * FROM User WHERE user_name= ?';
-        connect.query(sql,username, (err, data) => {
+        console.log("dato entrante DAO "+ username);
+        let sql = 'SELECT * FROM Taller.User WHERE username = ?';
+        connect.query(sql, username,(err, data) => {
             if (err) throw err;
             if (data.length>0) return callback(data[0]);
             return callback(null);

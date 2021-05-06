@@ -1,0 +1,49 @@
+extends layout
+block content
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+        a.boton5(href='/home/main') Home
+        button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+        #navbarNavDropdown.collapse.navbar-collapse
+            ul.navbar-nav
+                li.nav-item(style='background-color: powderblue;' )
+                    a.nav-link(href='/home/addC') Agregar nota
+                li.nav-item
+                    a.nav-link(href='/home/seeC') Ver notas
+    .form1(style='width: fit-content; height: fit-content;')
+        .form2(style='border-style: solid; border-width: 1px;')
+            div
+                div
+                    div
+                        form(action='/note/addService'   method='POST')
+                            .d-flex.flex-row.bd-highlight.mb-3
+                                .form-group
+                                    label.control-label Servicio
+                                    input.form-control(type='text' name='servicio' placeholder='--------')
+                                .form-group
+                                    label.control-label Precio
+                                    input.form-control(type='text' name='price'  placeholder='$')
+                                .form-group.p-2.bd-highlight
+                                    button.btn.btn-primary(type='submit' ) Add
+                    table.table.table-sm.table-dark.table-hover
+                        thead
+                            tr
+                                th(scope='col') #
+                                th(scope='col') Descripcion
+                                th(scope='col') Precio
+                                // <th scope="col">Handle</th>
+                        tbody
+                            each item  in shopping
+                                tr
+                                    th(scope='row')
+                                    td=item.servicio
+                                    td=item.price
+                .form-group.p-2.bd-highlight
+                    .d-flex.flex-row.bd-highlight.mb-3
+                        h5.control-label Total $
+                        h5.control-label=acum
+                        select.browser-default.custom-select( name='selectC')
+                            option(value='Adeudo') Adeudo
+                            option(value='Pagado') Pagado
+                    br
+                    a.btn.btn-primary(type='submit' href='/note/addS/'+idC ) Terminado

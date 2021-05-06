@@ -1,0 +1,30 @@
+extends layout
+block content
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+        a.boton5(href='/home/main') Home
+        button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+        #navbarNavDropdown.collapse.navbar-collapse
+            ul.navbar-nav
+                li.nav-item
+                    a.nav-link(href='/home/addC') Agregar Cliente
+                li.nav-item(style='background-color: powderblue;' )
+                    a.nav-link(href='/home/seeC') Ver Clientes
+    .d-flex.flex-wrap
+        each item in client
+            .card.cardL(style='width:300px; border-style: solid;')
+                .card-body
+                    .d-flex.flex-row.bd-highlight.mb-3
+                        p.card-test= item.id
+                        h4.card-title= item.name
+                    p.card-text= item.lastname
+                    p.card-text= item.phone
+                    p.card-text= item.email
+                    .d-flex.flex-row.bd-highlight.mb-3
+                        .form-group.p-2.bd-highlight
+                            -console.log("field "+item.id)
+                            a.btn.btn-warning(href='/home/editC/'+item.id) Edit
+                        .form-group.p-2.bd-highlight
+                            a.btn.btn-danger(href='/home/delC/'+item.id) Delete
+                        .form-group.p-2.bd-highlight
+                            // <a [routerLink]="'addEdit/',client" class="btn btn-info "  >Editar</a>
